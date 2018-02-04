@@ -44,8 +44,17 @@ if ($client->getAccessToken()) {
     $channelsResponse = $youtube->channels->listChannels('contentDetails', array(
       'mine' => 'true',
     ));
+    // $_SESSION["contentDetails"] = $channelsResponse;
 
-    $htmlBody = '';
+    $channelsResponseSnippet = $youtube->channels->listChannels('snippet', array(
+      'mine' => 'true',
+    ));
+    // print_r($channelsResponseSnippet['items'][0]['snippet']['title']);
+    $channel['id'] = $channelsResponseSnippet['items'][0]['id'];
+    $channel['title'] = $channelsResponseSnippet['items'][0]['snippet']['title'];
+    $_SESSION["channel"] = $channel;
+
+    // $htmlBody = '';
     foreach ($channelsResponse['items'] as $channel) {
       // Extract the unique playlist ID that identifies the list of videos
       // uploaded to the channel, and then call the playlistItems.list method
@@ -57,13 +66,21 @@ if ($client->getAccessToken()) {
         'maxResults' => 50
       ));
 
-      $htmlBody .= "<h3>Videos in list $uploadsListId</h3><ul>";
+      // $htmlBody .= "<h3>Videos in list $uploadsListId</h3><ul>";
+      // foreach ($playlistItemsResponse['items'] as $playlistItem) {
+      //   $htmlBody .= sprintf('<li>%s (%s)</li>', $playlistItem['snippet']['title'],
+      //     $playlistItem['snippet']['resourceId']['videoId']);
+      // }
+      // $htmlBody .= '</ul>';
+      $i = 0;
       foreach ($playlistItemsResponse['items'] as $playlistItem) {
-        $htmlBody .= sprintf('<li>%s (%s)</li>', $playlistItem['snippet']['title'],
-          $playlistItem['snippet']['resourceId']['videoId']);
+        $playlistItems[$i]['title'] = $playlistItem['snippet']['title'];
+        $playlistItems[$i]['videoId'] = $playlistItem['snippet']['resourceId']['videoId'];
+        $i = $i + 1;
       }
-      $htmlBody .= '</ul>';
     }
+    $_SESSION["uploadsListId"] = $uploadsListId;
+    $_SESSION["playlistItems"] = $playlistItems;
   } catch (Google_Service_Exception $e) {
     $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',
       htmlspecialchars($e->getMessage()));

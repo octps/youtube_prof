@@ -96,6 +96,9 @@ require_once(dirname(__FILE__) . "/./lib/login.php");
     <title>My Uploads</title>
   </head>
   <body>
+<?
+    require_once(dirname(__FILE__) . "/./parts/header.php");
+?>
     <?=$htmlBody?>
   </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
     require_once(dirname(__FILE__) . "/../lib/loginCheck.php");
+    require_once(dirname(__FILE__) . "/../lib/members/index.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,16 @@
 <?
     require_once(dirname(__FILE__) . "/../parts/header.php");
 ?>
-members/index.php
+<div>
+    this channel id is <?= $channel['id'] ?>.<br>
+    this channel titile is <?= $channel['title'] ?>.<br>
+    <br>
+    <div>
+    <? foreach($playlistItems as $playlistItem): ?>
+    <h2>video title is <?= $playlistItem['title']?></h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $playlistItem['videoId']?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <? endforeach; ?>
+    </div>
+</div>
 </body>
 </html>
