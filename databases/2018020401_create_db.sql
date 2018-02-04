@@ -1,0 +1,1 @@
+create database youtube_prof DEFAULT CHARACTER SET utf8;
