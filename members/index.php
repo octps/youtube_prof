@@ -1,5 +1,5 @@
 <?php
-
+    require_once(dirname(__FILE__) . "/../lib/loginCheck.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,9 @@
 <link rel="shortcut icon" href="">
 </head>
 <body>
+<?
+    require_once(dirname(__FILE__) . "/../parts/header.php");
+?>
 members/index.php
 </body>
 </html>

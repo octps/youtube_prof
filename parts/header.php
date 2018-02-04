@@ -1,5 +1,5 @@
 
 <div>
-  <a href="login.php">login</a>
-  <a href="login.php">logout</a>
+  <a href="/login.php">login</a>
+  <a href="/logout.php">logout</a>
 </div>

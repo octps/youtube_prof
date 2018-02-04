@@ -1,4 +1,8 @@
 <?php
+    require_once(dirname(__FILE__) . "/./lib/logout.php");
+?>
+
+<?php
 
 ?>
 <!DOCTYPE html>
@@ -14,6 +18,9 @@
 <link rel="shortcut icon" href="">
 </head>
 <body>
-logout.php
+<?
+    require_once(dirname(__FILE__) . "/./parts/header.php");
+?>
+logoutしました。
 </body>
 </html>
