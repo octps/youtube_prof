@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteBase /
+    RewriteRule ^lib/(.*)$ http://localhost/404.php
+    RewriteRule ^parts/(.*)$ http://localhost/404.php
+
+</IfModule>

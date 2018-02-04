@@ -17,6 +17,6 @@
 <?
     require_once(dirname(__FILE__) . "/./parts/header.php");
 ?>
-index.php
+404 not found
 </body>
 </html>
