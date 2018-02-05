@@ -25,10 +25,10 @@
     <div>
     <? foreach($playlistItems as $playlistItem): ?>
     <h2>video title is <?= $playlistItem['title']?></h2>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $playlistItem['videoId']?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $playlistItem['videoId'] ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     <form action="/members/post.php" method="post">
-        <input type="text" value="<?= $playlistItem['videoId']?>">
-        <input type="text" value="<?= $channel['id'] ?>">
+        <input type="text" name="videoId" value="<?= $playlistItem['videoId']?>">
+        <input type="text" name="channel_origin_id" value="<?= $channel['id'] ?>">
         <input type="submit" value="登録">
     </form>
     <? endforeach; ?>
