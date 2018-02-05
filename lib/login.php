@@ -82,6 +82,7 @@ if ($client->getAccessToken()) {
     $_SESSION["uploadsListId"] = $uploadsListId;
     $_SESSION["playlistItems"] = $playlistItems;
   } catch (Google_Service_Exception $e) {
+    header("location:/logout.php");
     $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',
       htmlspecialchars($e->getMessage()));
   } catch (Google_Exception $e) {
