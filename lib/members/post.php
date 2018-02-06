@@ -11,6 +11,7 @@
     $videoIdFlag = false;
     $channel_origin_id_Flag = false;
 
+    //vidoe idがpostされているかの確認
     if (!isset($post['videoId'])
         || !isset($post['channel_origin_id'])
     ) {
@@ -18,9 +19,9 @@
         exit;
     };
 
-
     $playlistItems = $_SESSION["playlistItems"];
 
+    // ただしいvidoe idがpostされているかの確認
     foreach($playlistItems as $playlistItem) {
         if ($videoIdFlag === false) {
             if ($post['videoId'] === $playlistItem['videoId']) {
@@ -29,50 +30,33 @@
         }
     }
 
+    // ただしいchannel idがpostされているかの確認
     $channel = $_SESSION["channel"];
     if ($post['channel_origin_id'] === $channel['id']) {
         $channel_origin_id_Flag = true;
     }
+
+    //channelまたはmovieがただしくpostされているかの確認
     if ($videoIdFlag === false || $channel_origin_id_Flag === false) {
         header("location:/404.php");
         exit;
     }
 
     $dbh = Db::getInstance();
-    $stmt_select = $dbh -> prepare("select * from channels where channel_origin_id = :channel_origin_id order by id DESC");
-    $stmt_select->bindParam(':channel_origin_id', $post['channel_origin_id'], PDO::PARAM_STR);
-    $stmt_select->execute();
-    $select_result = $stmt_select->fetchAll();
-    
-    if ($select_result === null) {
-        $stmt1 = $dbh -> prepare("insert into channels (
-                    channel_origin_id
-                    , created_at
-                ) values (
-                    :channel_origin_id
-                    , null
-                )"
-        );
-        $stmt1->bindParam(':channel_origin_id', $post['channel_origin_id'], PDO::PARAM_STR);
-        $stmt1->execute();
-        $lastChannelId = $dbh->lastInsertId();
-    } else {
-        $lastChannelId = $select_result[0]['id'];
-    }
 
-    $stmt2 = $dbh -> prepare("insert into movies (
-                    channels_id
-                    , video_id
-                    , created_at
-                ) values (
-                    :channels_id
-                    , :video_id
-                    , null
-                )"
-        );
-    $stmt2->bindParam(':channels_id', $lastChannelId, PDO::PARAM_STR);
-    $stmt2->bindParam(':video_id', $post['videoId'], PDO::PARAM_STR);
-    $stmt2->execute();
+    $stmt_select_movie = $dbh -> prepare("select * from channels where channel_origin_id = :channel_origin_id order by id DESC");
+    $stmt_select_movie->bindParam(':channel_origin_id', $channel['id'], PDO::PARAM_STR);
+    $stmt_select_movie->execute();
+    $select_movie_result = $stmt_select_movie->fetchAll();
+
+    $stmt_update = $dbh -> prepare("update movies
+                    set
+                    video_id = :video_id
+                    where
+                    channels_id = :channels_id");
+    $stmt_update->bindParam(':video_id', $post['videoId'], PDO::PARAM_STR);
+    $stmt_update->bindParam(':channels_id', $select_movie_result[0]['id'], PDO::PARAM_STR);
+    $stmt_update->execute();
 
     header("location: /members/index.php");
 

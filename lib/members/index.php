@@ -36,9 +36,10 @@
     // 動画が登録されているか確認する
     // なかったときは最新の動画を登録
     $stmt_select_movie = $dbh -> prepare("select * from movies where channels_id = :channels_id order by id DESC");
-    $stmt_select_movie->bindParam(':channels_id', $channel['id'], PDO::PARAM_STR);
+    $stmt_select_movie->bindParam(':channels_id', $lastChannelId, PDO::PARAM_STR);
     $stmt_select_movie->execute();
     $select_movie_result = $stmt_select_movie->fetchAll();
+    
 
     if (empty($select_movie_result)) {
         $stmt2 = $dbh -> prepare("insert into movies (
