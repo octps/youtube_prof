@@ -35,11 +35,16 @@
     }
     if ($videoIdFlag === false || $channel_origin_id_Flag === false) {
         header("location:/404.php");
-        exit;        
+        exit;
     }
 
     $dbh = Db::getInstance();
-    $stmt1 = $dbh -> prepare("insert into channels (
+    $stmt_select = $dbh -> prepare("select * from channels where channel_origin_id = :channel_origin_id order by id DESC");
+    $stmt_select->bindParam(':channel_origin_id', $post['channel_origin_id'], PDO::PARAM_STR);
+    $stmt_select->execute();
+    $select_result = $stmt_select->fetchAll();
+    if ($select_result === null) {
+        $stmt1 = $dbh -> prepare("insert into channels (
                     channel_origin_id
                     , created_at
                 ) values (
@@ -47,10 +52,13 @@
                     , null
                 )"
         );
-    $stmt1->bindParam(':channel_origin_id', $post['channel_origin_id'], PDO::PARAM_STR);
-    $stmt1->execute();
-
-    $lastChannelId = $dbh->lastInsertId();
+        $stmt1->bindParam(':channel_origin_id', $post['channel_origin_id'], PDO::PARAM_STR);
+        $stmt1->execute();
+        $lastChannelId = $dbh->lastInsertId();
+    } else {
+        $lastChannelId = $select_result[0]['id'];
+    }
+    
     $stmt2 = $dbh -> prepare("insert into movies (
                     channels_id
                     , video_id
