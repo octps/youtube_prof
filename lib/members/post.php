@@ -43,6 +43,7 @@
     $stmt_select->bindParam(':channel_origin_id', $post['channel_origin_id'], PDO::PARAM_STR);
     $stmt_select->execute();
     $select_result = $stmt_select->fetchAll();
+    
     if ($select_result === null) {
         $stmt1 = $dbh -> prepare("insert into channels (
                     channel_origin_id
@@ -58,7 +59,7 @@
     } else {
         $lastChannelId = $select_result[0]['id'];
     }
-    
+
     $stmt2 = $dbh -> prepare("insert into movies (
                     channels_id
                     , video_id

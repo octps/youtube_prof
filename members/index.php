@@ -21,6 +21,7 @@
 <div>
     this channel id is <?= $channel['id'] ?>.<br>
     this channel titile is <?= $channel['title'] ?>.<br>
+    現在選択中の動画は <?= $selected_movie ?> です。
     <br>
     <div>
     <? foreach($playlistItems as $playlistItem): ?>
