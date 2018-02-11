@@ -9,10 +9,12 @@
 
     $post = $_POST;
     $videoIdFlag = false;
+    $videoTitleFlag = false;
     $channel_origin_id_Flag = false;
 
     //vidoe idがpostされているかの確認
     if (!isset($post['videoId'])
+        || !isset($post['title'])
         || !isset($post['channel_origin_id'])
     ) {
         header("location:/404.php");
@@ -23,9 +25,12 @@
 
     // ただしいvidoe idがpostされているかの確認
     foreach($playlistItems as $playlistItem) {
-        if ($videoIdFlag === false) {
+        if ($videoIdFlag === false || $videoTitleFlag === false) {
             if ($post['videoId'] === $playlistItem['videoId']) {
                 $videoIdFlag = true;
+            }
+            if ($post['title'] === $playlistItem['title']) {
+                $videoTitleFlag = true;
             }
         }
     }
@@ -37,7 +42,7 @@
     }
 
     //channelまたはmovieがただしくpostされているかの確認
-    if ($videoIdFlag === false || $channel_origin_id_Flag === false) {
+    if ($videoIdFlag === false || $videoTitleFlag === false || $channel_origin_id_Flag === false) {
         header("location:/404.php");
         exit;
     }
@@ -52,9 +57,11 @@
     $stmt_update = $dbh -> prepare("update movies
                     set
                     video_id = :video_id
+                    , video_title = :video_title
                     where
                     channels_id = :channels_id");
     $stmt_update->bindParam(':video_id', $post['videoId'], PDO::PARAM_STR);
+    $stmt_update->bindParam(':video_title', $post['title'], PDO::PARAM_STR);
     $stmt_update->bindParam(':channels_id', $select_movie_result[0]['id'], PDO::PARAM_STR);
     $stmt_update->execute();
 

@@ -21,14 +21,17 @@
 <div>
     this channel id is <?= $channel['id'] ?>.<br>
     this channel titile is <?= $channel['title'] ?>.<br>
-    現在選択中の動画は <?= $selected_movie ?> です。
+    <p>現在選択中の動画</p>
+    <h2>video title is <?= $selected_movie_title ?></h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $selected_movie_id ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     <br>
     <div>
     <? foreach($playlistItems as $playlistItem): ?>
-    <h2>video title is <?= $playlistItem['title']?></h2>
+    <h2>video title is <?= $playlistItem['title'] ?></h2>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $playlistItem['videoId'] ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     <form action="/members/post.php" method="post">
-        <input type="text" name="videoId" value="<?= $playlistItem['videoId']?>">
+        <input type="text" name="title" value="<?= $playlistItem['title'] ?>">
+        <input type="text" name="videoId" value="<?= $playlistItem['videoId'] ?>">
         <input type="text" name="channel_origin_id" value="<?= $channel['id'] ?>">
         <input type="submit" value="登録">
     </form>

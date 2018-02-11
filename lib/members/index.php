@@ -39,21 +39,24 @@
     $stmt_select_movie->bindParam(':channels_id', $lastChannelId, PDO::PARAM_STR);
     $stmt_select_movie->execute();
     $select_movie_result = $stmt_select_movie->fetchAll();
-    
+
 
     if (empty($select_movie_result)) {
         $stmt2 = $dbh -> prepare("insert into movies (
                     channels_id
                     , video_id
+                    , video_title
                     , created_at
                 ) values (
                     :channels_id
                     , :video_id
+                    , :video_title
                     , null
                 )"
         );
         $stmt2->bindParam(':channels_id', $lastChannelId, PDO::PARAM_STR);
         $stmt2->bindParam(':video_id', $playlistItems[0]['videoId'], PDO::PARAM_STR);
+        $stmt2->bindParam(':video_title', $playlistItems[0]['title'], PDO::PARAM_STR);
         $stmt2->execute();
     }
 
@@ -62,6 +65,7 @@
     $stmt_get_movie->bindParam(':channels_id', $lastChannelId, PDO::PARAM_STR);
     $stmt_get_movie->execute();
     $stmt_get_movie_result = $stmt_get_movie->fetchAll();
-    $selected_movie = $stmt_get_movie_result[0]["video_id"];    
+    $selected_movie_id = $stmt_get_movie_result[0]["video_id"];
+    $selected_movie_title = $stmt_get_movie_result[0]["video_title"];
 
 ?>
