@@ -1,0 +1,14 @@
+/*
+custom.css
+*/
+.members.detail .movie_select {
+  display: none;
+}
+
+.members.detail .movie_select.show {
+  display: block;
+}
+
+/*.members.detail .movie_select {
+  display: none;
+}*/
