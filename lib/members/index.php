@@ -30,6 +30,7 @@
         $lastChannelId = $dbh->lastInsertId();
     } else {
         $lastChannelId = $select_result[0]['id'];
+        $prof = $select_result[0]['prof'];
     }
 
     // 最新の動画を登録する
