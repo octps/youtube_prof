@@ -19,13 +19,16 @@
     if (empty($select_result)) {
         $stmt1 = $dbh -> prepare("insert into channels (
                 channel_origin_id
+                , channel_title
                 , created_at
             ) values (
                 :channel_origin_id
+                , :channel_title
                 , null
             )"
         );
         $stmt1->bindParam(':channel_origin_id', $channel['id'], PDO::PARAM_STR);
+        $stmt1->bindParam(':channel_title', $channel['title'], PDO::PARAM_STR);
         $stmt1->execute();
         $lastChannelId = $dbh->lastInsertId();
     } else {

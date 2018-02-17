@@ -30,7 +30,7 @@
     this channel titile is <?= $channel['title'] ?>.<br>
     <form action="/members/postprof.php" method="post">
         チャンネルの紹介文:<br>
-        <textarea name="prof"><?= htmlspecialchars($prof) ?></textarea>
+        <textarea name="prof"><?= @htmlspecialchars($prof) ?></textarea>
         <input type="text" name="channel_origin_id" value="<?= $channel['id'] ?>">
         <input type="submit" value="チャンネル紹介変更">
     </form>
