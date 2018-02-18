@@ -30,7 +30,8 @@
     <p>動画</p>
     <h2>video title is <?= $result["movies"][0]["video_title"] ?></h2>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $result["movies"][0]["video_id"] ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-    </div>
+    <a href="https://www.youtube.com/channel/<?= $result["channels"][0]['channel_origin_id'] ?>" target="_blank">youtubeで見る</a>
 </div>
+
 </body>
 </html>
