@@ -38,7 +38,7 @@
           </div>
         </div>
         <div>
-            <img src="<?= $_SESSION['channel']['icon'] ?>">
+            <img src="<?= @$icon ?>">
             this channel id is <?= $channel['id'] ?>.<br>
             this channel titile is <?= $channel['title'] ?>.<br>
             <form action="/members/postprof.php" method="post">

@@ -39,6 +39,7 @@
         <? foreach ($channels_and_movies as $val): ?>
             <div>
                 <!-- <p>channel_origin_id : <?= $val['channel']['channel_origin_id'] ?></p> -->
+                <img src="<?= $val['channel']['channel_img'] ?>">
                 <h3>チャンネル : <?= $val['channel']['channel_title'] ?></h3>
                 <p>チャンネル紹介 : <?= $val['channel']['prof'] ?></p>
                 <h3>動画タイトル : <?= $val['movie'][0]['video_title'] ?></h3>

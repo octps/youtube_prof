@@ -2,6 +2,7 @@ create table channels (
     id INTEGER PRIMARY KEY AUTO_INCREMENT
     , channel_origin_id varchar(256) NOT NULL
     , channel_title varchar(256) NOT NULL
+    , channel_img varchar(512) NOT NULL
     , prof varchar(1024) DEFAULT NULL
     , created_at TIMESTAMP NOT NULL DEFAULT 0
     , updated_at TIMESTAMP NOT NULL DEFAULT NOW() ON UPDATE NOW()
