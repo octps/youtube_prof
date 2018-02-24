@@ -31,6 +31,13 @@
         $stmt1->bindParam(':channel_title', $channel['title'], PDO::PARAM_STR);
         $stmt1->execute();
         $lastChannelId = $dbh->lastInsertId();
+    } elseif ($select_result[0]['channel_title'] !== $channel['title']) {
+        $stmt_update1 = $dbh -> prepare("update channels set channel_title = :title
+            where channel_origin_id = :channel_origin_id");
+        $stmt_update1->bindParam(':title', $channel['title'], PDO::PARAM_STR);
+        $stmt_update1->bindParam(':channel_origin_id', $channel['id'], PDO::PARAM_STR);
+        $stmt_update1->execute();
+        $lastChannelId = $dbh->lastInsertId();
     } else {
         $lastChannelId = $select_result[0]['id'];
         $prof = $select_result[0]['prof'];

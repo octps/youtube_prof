@@ -90,15 +90,39 @@ require_once(dirname(__FILE__) . "/./lib/login.php");
 // }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>My Uploads</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>channelprof login</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="shortcut icon" href="">
   </head>
   <body>
-<?
-    require_once(dirname(__FILE__) . "/./parts/header.php");
-?>
-    <?=$htmlBody?>
+    <div class="main">
+        <div class="ui menu my_head">
+          <div class="container">
+            <div class="header item"><h1>channelprof</h1></div>
+            <div class="item"><a href="/">top</a></div>
+            <div class="right menu">
+             <a href="/login.php" class="active item">login</a>
+             <a href="/logout.php" class="item">logout</a>
+            </div>
+          </div>
+        </div>
+        <div class="container login">
+            <?=$htmlBody?>
+        </div>
+    </div>
+    <footer>
+        channelprof
+    </footer>
   </body>
 </html>

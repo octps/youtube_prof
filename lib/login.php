@@ -52,7 +52,9 @@ if ($client->getAccessToken()) {
     // print_r($channelsResponseSnippet['items'][0]['snippet']['title']);
     $channel['id'] = $channelsResponseSnippet['items'][0]['id'];
     $channel['title'] = $channelsResponseSnippet['items'][0]['snippet']['title'];
+    $channel['icon'] = $channelsResponseSnippet['items'][0]['snippet']['thumbnails']['default']["url"];
     $_SESSION["channel"] = $channel;
+
 
     // $htmlBody = '';
     foreach ($channelsResponse['items'] as $channel) {
@@ -97,7 +99,7 @@ if ($client->getAccessToken()) {
   $_SESSION['state'] = $state;
 
   $authUrl = $client->createAuthUrl();
-  $htmlBody = '<h3>Authorization Required</h3><p>You need to <a href="' . $authUrl . '">authorize access</a> before proceeding.<p>';
+  $htmlBody = '<h3><a href="' . $authUrl . '" class="ui primary button">Googleアカウントでログインする</a></h3>';
 }
 
 // logincheck
