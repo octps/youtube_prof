@@ -31,14 +31,16 @@
             <div class="header item"><h1>channelprof</h1></div>
             <div class="item"><a href="/">top</a></div>
             <div class="active item"><a href="/members/">members</a></div>
-            <div class="right menu">
+            <div class="right menu item">
              <a href="/login.php" class="item">login</a>
              <a href="/logout.php" class="item">logout</a>
             </div>
           </div>
         </div>
         <div>
-            <img src="<?= @$icon ?>">
+            <? if (@$icon !== false): ?>
+            <img src="<?= $icon ?>">
+            <? endif; ?>
             this channel id is <?= $channel['id'] ?>.<br>
             this channel titile is <?= $channel['title'] ?>.<br>
             <form action="/members/postprof.php" method="post">

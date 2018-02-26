@@ -68,3 +68,16 @@ hr {
     height:600px;
     padding-top:30px;
 }
+
+.twelve.wide.column.name {
+    margin-bottom: 0;
+}
+
+
+.container .ui.grid {
+    margin-top: 20px;
+}
+
+footer p.name {
+    margin-top: 10px;
+}

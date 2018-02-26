@@ -23,8 +23,8 @@
           <div class="container">
             <div class="header item"><h1>channelprof</h1></div>
             <div class="active item"><a href="/">top</a></div>
-            <div class="right menu">
-             <a href="/login.php" class="item">login</a>
+            <div class="right menu item">
+             <a href="/login.php" class="item">チャンネル登録</a>
              <a href="/logout.php" class="item">logout</a>
             </div>
           </div>
@@ -37,14 +37,13 @@
 
         <div class="container">
         <? foreach ($channels_and_movies as $val): ?>
-            <div>
+            <div class="ui grid">
                 <!-- <p>channel_origin_id : <?= $val['channel']['channel_origin_id'] ?></p> -->
-                <img src="<?= $val['channel']['channel_img'] ?>">
-                <h3>チャンネル : <?= $val['channel']['channel_title'] ?></h3>
-                <p>チャンネル紹介 : <?= $val['channel']['prof'] ?></p>
-                <h3>動画タイトル : <?= $val['movie'][0]['video_title'] ?></h3>
-                <div class="t-a-center">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $val['movie'][0]['video_id'] ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <img class="three wide column" src="<?= $val['channel']['channel_img'] ?>">
+                <div class="thirteen wide column name">
+                    <h3>チャンネル名 : <?= $val['channel']['channel_title'] ?></h3>
+                    <p>登録日 : <?= $val['channel']['created_at'] ?></p>
+                    <p>チャンネル概要 : <?= $val['channel']['prof'] ?></p>
                 </div>
                 <div class="t-a-right to_detail">
                     <a class="ui primary button" href="/channels/?id=<?= $val['channel']['id'] ?>">チャンネル詳細</a></button>
@@ -56,7 +55,7 @@
     </div>
 
     <footer>
-        channelprof
+        <p class="name">channelprof</p>
     </footer>
 </body>
 </html>

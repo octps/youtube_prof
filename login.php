@@ -111,7 +111,7 @@ require_once(dirname(__FILE__) . "/./lib/login.php");
           <div class="container">
             <div class="header item"><h1>channelprof</h1></div>
             <div class="item"><a href="/">top</a></div>
-            <div class="right menu">
+            <div class="right menu item">
              <a href="/login.php" class="active item">login</a>
              <a href="/logout.php" class="item">logout</a>
             </div>
