@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
+    <script src="/js/rank.js"></script>
     <link rel="stylesheet" href="/css/base.css">
     <link rel="shortcut icon" href="">
 </head>
@@ -44,9 +45,14 @@
                     </div>
                 </div>
             </div>
-                <h3>動画タイトル : <?= $result["movies"][0]["video_title"] ?></h3>
+                <h3>新着動画 タイトル : <?= $result["movies"][0]["video_title"] ?></h3>
                 <div class="t-a-center">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $result["movies"][0]["video_id"] ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <iframe id="popup-YouTube-player" width="560" height="315" src="https://www.youtube.com/embed/<?= $result["movies"][0]["video_id"] ?>?enablejsapi=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+                <div>
+                    <button id="play">play</button>
+                    <button id="pause">pause</button>
+                    <button id="stop">stop</button>
                 </div>
                 <div class="t-a-right to_detail">
                     <a class="ui primary button" href="https://www.youtube.com/channel/<?= $result["channels"][0]['channel_origin_id'] ?>" target="_blank">youtubeで見る</a>

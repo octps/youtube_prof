@@ -31,8 +31,8 @@
         </div>
 
         <div class="container head">
-            <a href="/" class="item active">new</a><!--
-            --><a href="/" class="item">ranking</a>
+            <a href="/" class="item <? if ($_GET['rank'] !== 'true' OR !isset($_GET['rank'])): ?> active <? endif; ?>">new</a><!--
+            --><a href="/?rank=true" class="item <? if ($_GET['rank'] === 'true' && isset($_GET['rank'])): ?> active <? endif; ?>">ranking</a>
         </div>
 
         <div class="container">
