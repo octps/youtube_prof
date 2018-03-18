@@ -40,7 +40,7 @@
         </div>
 
         <div class="container">
-            <span class="notice">ログアウトしました。</span>
+            <span class="notice">youtubeに動画が登録されていないようです。動画追加後、再度登録お願いします。</span>
         <? foreach ($channels_and_movies as $val): ?>
             <div class="ui grid">
                 <!-- <p>channel_origin_id : <?= $val['channel']['channel_origin_id'] ?></p> -->

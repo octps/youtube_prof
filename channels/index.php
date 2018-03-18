@@ -1,4 +1,5 @@
 <?php
+    require_once(dirname(__FILE__) . "/../lib/memberCheck.php");
     require_once(dirname(__FILE__) . "/../lib/channels/index.php");
     $result = channel_index::movie();
     // echo("<pre>");
@@ -29,7 +30,9 @@
             <div class="item"><a href="/">top</a></div>
             <div class="right menu item">
              <a href="/login.php" class="item">チャンネル登録</a>
+             <? if($memberCheck === 'true'): ?>
              <a href="/logout.php" class="item">logout</a>
+             <? endif; ?>
             </div>
           </div>
         </div>

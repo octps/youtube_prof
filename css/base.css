@@ -81,3 +81,9 @@ hr {
 footer p.name {
     margin-top: 10px;
 }
+
+.notice {
+    font-size: 200%;
+    font-weight: bold;
+    color:red;
+}

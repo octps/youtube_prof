@@ -1,4 +1,5 @@
 <?php
+    require_once(dirname(__FILE__) . "/./lib/memberCheck.php");
     require_once(dirname(__FILE__) . "/./lib/index.php");
     $channels_and_movies = user::index();
 ?>
@@ -25,7 +26,9 @@
             <div class="active item"><a href="/">top</a></div>
             <div class="right menu item">
              <a href="/login.php" class="item">チャンネル登録</a>
+             <? if($memberCheck === 'true'): ?>
              <a href="/logout.php" class="item">logout</a>
+             <? endif; ?>
             </div>
           </div>
         </div>

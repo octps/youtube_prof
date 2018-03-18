@@ -82,7 +82,13 @@ if ($client->getAccessToken()) {
       }
     }
     $_SESSION["uploadsListId"] = $uploadsListId;
-    $_SESSION["playlistItems"] = $playlistItems;
+    if (is_null(@$playlistItems)){
+      // print_r("m2");
+      header("location:/notice.php");
+      exit;
+    } else {
+      $_SESSION["playlistItems"] = $playlistItems;
+    }
   } catch (Google_Service_Exception $e) {
     header("location:/logout.php");
     $htmlBody .= sprintf('<p>A service error occurred: <code>%s</code></p>',
@@ -99,7 +105,7 @@ if ($client->getAccessToken()) {
   $_SESSION['state'] = $state;
 
   $authUrl = $client->createAuthUrl();
-  $htmlBody = '<h3><a href="' . $authUrl . '" class="ui primary button">Googleアカウントでログインする</a></h3>';
+  $htmlBody = '<h3><a href="' . $authUrl . '" class="ui primary button">Googleアカウントでログインしチャンネル登録する</a></h3>';
 }
 
 // logincheck
